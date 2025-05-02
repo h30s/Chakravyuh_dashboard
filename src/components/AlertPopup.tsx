@@ -1,15 +1,15 @@
-
 import React, { useState } from 'react';
 import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel } from '@/components/ui/alert-dialog';
 import { Send, AlertTriangle } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 
 interface AlertPopupProps {
+  open: boolean;
   severity: 'critical' | 'warning' | 'info';
   onClose: () => void;
 }
 
-const AlertPopup: React.FC<AlertPopupProps> = ({ severity, onClose }) => {
+const AlertPopup: React.FC<AlertPopupProps> = ({ open, severity, onClose }) => {
   const [isDeploying, setIsDeploying] = useState(false);
   
   const handleDeployDrone = () => {
@@ -30,7 +30,7 @@ const AlertPopup: React.FC<AlertPopupProps> = ({ severity, onClose }) => {
   };
 
   return (
-    <AlertDialog open={true} onOpenChange={onClose}>
+    <AlertDialog open={open} onOpenChange={onClose}>
       <AlertDialogContent className={`
         border-2 
         ${severity === 'critical' 

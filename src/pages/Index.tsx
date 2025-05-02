@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import NetworkStatus from "@/components/NetworkStatus";
 import { AddNodeButton, AddNodeModal } from "@/components/AddNodeModal";
@@ -51,12 +50,12 @@ const Index = () => {
   useEffect(() => {
     if (alerts.length > 0 && alertSeverity === 'critical') {
       setShowAlertPopup(true);
-      
+
       // Hide popup after 5 seconds
       const timerId = setTimeout(() => {
         setShowAlertPopup(false);
       }, 5000);
-      
+
       return () => clearTimeout(timerId);
     }
   }, [alerts, alertSeverity]);
@@ -105,6 +104,7 @@ const Index = () => {
       {/* Alert popup for drone surveillance */}
       {showAlertPopup && (
         <AlertPopup 
+          open={showAlertPopup}
           severity={alertSeverity}
           onClose={() => setShowAlertPopup(false)}
         />
